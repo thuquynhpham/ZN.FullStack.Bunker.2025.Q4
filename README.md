@@ -6,6 +6,9 @@ The primary focus is on your ability to direct, refine, and validate AI-generate
 
 Please fork this repo and share a PR.
 
+You do not need to deliver it all, please take your own time into consideration, however fokus on providing something special that we can talk about later at our following interviews.
+
+
 -----
 
 ## The Core Task: What to Build
