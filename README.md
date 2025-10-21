@@ -1,6 +1,6 @@
 # .NET Developer Take-Home Test: AI-Assisted Port Calls API
 
-This is a practical test to assess your modern development workflow. The goal is to demonstrate how you leverage **AI development tools** to efficiently build a well-structured **.NET Minimal API** and a simple **Angular** frontend.
+This is a practical test to assess your modern development workflow. The goal is to demonstrate how you leverage **AI development tools** and understand the code results when efficiently building a well-structured **.NET Minimal API** and a simple **Angular** frontend.
 
 The primary focus is on your ability to direct, refine, and validate AI-generated code. **You are not required to deliver a fully runnable application**, but rather a well-structured codebase with clear examples of code and tests.
 
