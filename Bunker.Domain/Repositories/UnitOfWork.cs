@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Bunker.Domain.Models;
+using Bunker.Domain.DBI;
 
 namespace Bunker.Domain.Repositories;
 
@@ -19,7 +20,7 @@ public class UnitOfWork : IUnitOfWork
     private readonly DbContext _context;
     private bool _disposed = false;
 
-    public UnitOfWork(DbContext context)
+    public UnitOfWork(BunkerDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
@@ -41,6 +42,7 @@ public class UnitOfWork : IUnitOfWork
 
     public async Task<int> SaveChangesAsync()
     {
+
         return await _context.SaveChangesAsync();
     }
 

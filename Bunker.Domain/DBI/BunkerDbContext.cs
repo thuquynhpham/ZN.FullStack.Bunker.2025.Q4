@@ -1,14 +1,10 @@
-using Microsoft.EntityFrameworkCore;
 using Bunker.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bunker.Domain.DBI;
 
-public class BunkerDbContext : DbContext
+public class BunkerDbContext(DbContextOptions<BunkerDbContext> options) : DbContext(options)
 {
-    public BunkerDbContext(DbContextOptions<BunkerDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<Vessel> Vessels { get; set; }
     public DbSet<Port> Ports { get; set; }
     public DbSet<Voyage> Voyages { get; set; }
@@ -24,24 +20,29 @@ public class BunkerDbContext : DbContext
 
     private void ConfigureRelationships(ModelBuilder modelBuilder)
     {
+        // Configure Voyage relationships
         modelBuilder.Entity<Voyage>(entity =>
         {
+            // Vessel relationship
             entity.HasOne(e => e.Vessel)
                 .WithMany(v => v.Voyages)
                 .HasForeignKey(e => e.VesselId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Departure Port relationship
             entity.HasOne(e => e.DeparturePort)
-                .WithMany(p => p.Voyages)
+                .WithMany(p => p.DepartureVoyages)
                 .HasForeignKey(e => e.DeparturePortId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Arrival Port relationship
             entity.HasOne(e => e.ArrivalPort)
-                .WithMany(p => p.Voyages)
+                .WithMany(p => p.ArrivalVoyages)
                 .HasForeignKey(e => e.ArrivalPortId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
+        // Configure PortCall relationships
         modelBuilder.Entity<PortCall>(entity =>
         {
             entity.HasOne(e => e.Vessel)
@@ -60,6 +61,7 @@ public class BunkerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
+        // Configure BunkerOrder relationships
         modelBuilder.Entity<BunkerOrder>(entity =>
         {
             entity.HasOne(e => e.Vessel)
@@ -84,3 +86,5 @@ public class BunkerDbContext : DbContext
         });
     }
 }
+
+

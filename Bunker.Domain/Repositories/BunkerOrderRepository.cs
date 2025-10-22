@@ -1,4 +1,5 @@
 using Bunker.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bunker.Domain.Repositories;
 

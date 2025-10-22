@@ -102,7 +102,7 @@ public class Port
 
     public int? AnnualVesselCalls { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 
@@ -116,7 +116,8 @@ public class Port
 
     public virtual ICollection<PortCall> PortCalls { get; set; } = new List<PortCall>();
 
-    public virtual ICollection<Voyage> Voyages { get; set; } = new List<Voyage>();
+    public virtual ICollection<Voyage> DepartureVoyages { get; set; } = new List<Voyage>();
+    public virtual ICollection<Voyage> ArrivalVoyages { get; set; } = new List<Voyage>();
 
     public virtual ICollection<BunkerOrder> BunkerOrders { get; set; } = new List<BunkerOrder>();
 }

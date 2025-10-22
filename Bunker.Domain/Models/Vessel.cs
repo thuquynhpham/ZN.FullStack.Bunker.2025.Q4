@@ -56,7 +56,7 @@ public class Vessel
     [StringLength(9)]
     public string? MMSI { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
 
