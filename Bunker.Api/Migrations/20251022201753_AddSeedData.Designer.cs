@@ -4,6 +4,7 @@ using Bunker.Domain.DBI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bunker.Api.Migrations
 {
     [DbContext(typeof(BunkerDbContext))]
-    partial class BunkerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251022201753_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +347,7 @@ namespace Bunker.Api.Migrations
                         {
                             Id = 1,
                             BioFuelBlend = false,
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(4437),
                             CreatedBy = "System",
                             Currency = "USD",
                             DeliveryConfirmation = false,
@@ -358,9 +361,9 @@ namespace Bunker.Api.Migrations
                             PortId = 1,
                             QualityAcceptance = false,
                             QuantityMT = 500m,
-                            RequestedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RequestedDate = new DateTime(2025, 10, 22, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(3083),
                             SampleTaken = false,
-                            ScheduledDeliveryDate = new DateTime(2024, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledDeliveryDate = new DateTime(2025, 10, 30, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(3342),
                             Status = "Requested",
                             SupplierName = "Singapore Fuel Co",
                             TotalPriceUSD = 325000m,
@@ -372,7 +375,7 @@ namespace Bunker.Api.Migrations
                         {
                             Id = 2,
                             BioFuelBlend = false,
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(4840),
                             CreatedBy = "System",
                             Currency = "USD",
                             DeliveryConfirmation = false,
@@ -386,9 +389,9 @@ namespace Bunker.Api.Migrations
                             PortId = 2,
                             QualityAcceptance = false,
                             QuantityMT = 1000m,
-                            RequestedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RequestedDate = new DateTime(2025, 10, 22, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(4837),
                             SampleTaken = false,
-                            ScheduledDeliveryDate = new DateTime(2024, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledDeliveryDate = new DateTime(2025, 11, 2, 20, 17, 49, 60, DateTimeKind.Utc).AddTicks(4838),
                             Status = "Requested",
                             SupplierName = "Rotterdam Bunker Services",
                             TotalPriceUSD = 450000m,
@@ -561,7 +564,7 @@ namespace Bunker.Api.Migrations
                             Id = 1,
                             City = "Singapore",
                             Country = "Singapore",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(2244),
                             CreatedBy = "System",
                             HasBulkFacilities = false,
                             HasBunkeringFacilities = true,
@@ -589,7 +592,7 @@ namespace Bunker.Api.Migrations
                             Id = 2,
                             City = "Rotterdam",
                             Country = "Netherlands",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(2653),
                             CreatedBy = "System",
                             HasBulkFacilities = false,
                             HasBunkeringFacilities = true,
@@ -617,7 +620,7 @@ namespace Bunker.Api.Migrations
                             Id = 3,
                             City = "Los Angeles",
                             Country = "United States",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(2658),
                             CreatedBy = "System",
                             HasBulkFacilities = false,
                             HasBunkeringFacilities = true,
@@ -645,7 +648,7 @@ namespace Bunker.Api.Migrations
                             Id = 4,
                             City = "Hamburg",
                             Country = "Germany",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(2662),
                             CreatedBy = "System",
                             HasBulkFacilities = false,
                             HasBunkeringFacilities = true,
@@ -997,7 +1000,7 @@ namespace Bunker.Api.Migrations
                             Id = 1,
                             BunkeringRequired = false,
                             CargoOperations = "Container Loading",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(6332),
                             CreatedBy = "System",
                             CrewChangeRequired = false,
                             CustomsClearanceRequired = false,
@@ -1012,8 +1015,8 @@ namespace Bunker.Api.Migrations
                             ProvisionsRequired = false,
                             Purpose = "Loading",
                             RepairsRequired = false,
-                            ScheduledArrival = new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduledDeparture = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledArrival = new DateTime(2025, 10, 29, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(4726),
+                            ScheduledDeparture = new DateTime(2025, 10, 31, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(4982),
                             Status = "Scheduled",
                             TugAssistanceRequired = false,
                             VesselId = 1,
@@ -1024,7 +1027,7 @@ namespace Bunker.Api.Migrations
                             Id = 2,
                             BunkeringRequired = false,
                             CargoOperations = "Bulk Cargo Loading",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(6744),
                             CreatedBy = "System",
                             CrewChangeRequired = false,
                             CustomsClearanceRequired = false,
@@ -1039,8 +1042,8 @@ namespace Bunker.Api.Migrations
                             ProvisionsRequired = false,
                             Purpose = "Loading",
                             RepairsRequired = false,
-                            ScheduledArrival = new DateTime(2024, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduledDeparture = new DateTime(2024, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledArrival = new DateTime(2025, 11, 1, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(6740),
+                            ScheduledDeparture = new DateTime(2025, 11, 3, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(6742),
                             Status = "Scheduled",
                             TugAssistanceRequired = false,
                             VesselId = 2,
@@ -1147,7 +1150,7 @@ namespace Bunker.Api.Migrations
                             Id = 1,
                             Beam = 32m,
                             CallSign = "ABCD123",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 56, DateTimeKind.Utc).AddTicks(7298),
                             CreatedBy = "System",
                             DeadweightTonnage = 60000m,
                             Draft = 12m,
@@ -1170,7 +1173,7 @@ namespace Bunker.Api.Migrations
                             Id = 2,
                             Beam = 40m,
                             CallSign = "EFGH456",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 56, DateTimeKind.Utc).AddTicks(7747),
                             CreatedBy = "System",
                             DeadweightTonnage = 85000m,
                             Draft = 15m,
@@ -1193,7 +1196,7 @@ namespace Bunker.Api.Migrations
                             Id = 3,
                             Beam = 50m,
                             CallSign = "IJKL789",
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 56, DateTimeKind.Utc).AddTicks(7753),
                             CreatedBy = "System",
                             DeadweightTonnage = 120000m,
                             Draft = 18m,
@@ -1423,7 +1426,7 @@ namespace Bunker.Api.Migrations
                             BunkerOrderCount = 0,
                             CargoType = "Containers",
                             CargoWeightMT = 50000m,
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(9769),
                             CreatedBy = "System",
                             CrossesDateLine = false,
                             CrossesEquator = false,
@@ -1433,8 +1436,8 @@ namespace Bunker.Api.Migrations
                             HasIncidents = false,
                             IsInternational = true,
                             PortCallCount = 0,
-                            ScheduledArrival = new DateTime(2024, 1, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduledDeparture = new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledArrival = new DateTime(2025, 11, 11, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(8248),
+                            ScheduledDeparture = new DateTime(2025, 10, 29, 20, 17, 49, 58, DateTimeKind.Utc).AddTicks(7854),
                             Status = "Planned",
                             VesselId = 1,
                             VoyageNumber = "V001-2024"
@@ -1446,7 +1449,7 @@ namespace Bunker.Api.Migrations
                             BunkerOrderCount = 0,
                             CargoType = "Bulk Cargo",
                             CargoWeightMT = 75000m,
-                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 10, 22, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(177),
                             CreatedBy = "System",
                             CrossesDateLine = false,
                             CrossesEquator = false,
@@ -1456,8 +1459,8 @@ namespace Bunker.Api.Migrations
                             HasIncidents = false,
                             IsInternational = true,
                             PortCallCount = 0,
-                            ScheduledArrival = new DateTime(2024, 1, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduledDeparture = new DateTime(2024, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduledArrival = new DateTime(2025, 11, 16, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(174),
+                            ScheduledDeparture = new DateTime(2025, 11, 1, 20, 17, 49, 59, DateTimeKind.Utc).AddTicks(173),
                             Status = "Planned",
                             VesselId = 2,
                             VoyageNumber = "V002-2024"

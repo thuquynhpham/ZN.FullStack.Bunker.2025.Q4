@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Bunker.Domain\Bunker.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

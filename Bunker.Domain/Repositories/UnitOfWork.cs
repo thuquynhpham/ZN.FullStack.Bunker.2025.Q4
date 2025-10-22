@@ -12,7 +12,7 @@ public interface IUnitOfWork : IDisposable
     IPortCallRepository PortCalls { get; }
     IBunkerOrderRepository BunkerOrders { get; }
 
-    Task<int> SaveChangesAsync();
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 
 public class UnitOfWork : IUnitOfWork
@@ -40,10 +40,9 @@ public class UnitOfWork : IUnitOfWork
     private IBunkerOrderRepository? _bunkerOrders;
     public IBunkerOrderRepository BunkerOrders => _bunkerOrders ??= new BunkerOrderRepository(_context);
 
-    public async Task<int> SaveChangesAsync()
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 
     public void Dispose()

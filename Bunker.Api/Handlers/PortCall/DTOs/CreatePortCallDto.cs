@@ -1,14 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Bunker.Domain.Models;
+namespace Bunker.Api.Handlers.PortCall.DTOs;
 
-[Table("PortCalls")]
-public class PortCall
+public class CreatePortCallDto
 {
-    [Key]
-    public int Id { get; set; }
-
     [Required]
     public int VesselId { get; set; }
 
@@ -203,24 +198,8 @@ public class PortCall
 
     public decimal? IncidentCostUSD { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
     [StringLength(50)]
     public string? CreatedBy { get; set; }
 
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
     public string? Notes { get; set; }
-
-    public virtual Vessel Vessel { get; set; } = null!;
-
-    public virtual Port Port { get; set; } = null!;
-
-    public virtual Voyage? Voyage { get; set; }
-
-    public virtual ICollection<BunkerOrder> BunkerOrders { get; set; } = new List<BunkerOrder>();
-
 }

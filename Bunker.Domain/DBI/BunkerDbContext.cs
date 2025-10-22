@@ -1,4 +1,5 @@
 using Bunker.Domain.Models;
+using Bunker.Domain.DBI.SeedData;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bunker.Domain.DBI;
@@ -16,6 +17,7 @@ public class BunkerDbContext(DbContextOptions<BunkerDbContext> options) : DbCont
         base.OnModelCreating(modelBuilder);
 
         ConfigureRelationships(modelBuilder);
+        SeedData(modelBuilder);
     }
 
     private void ConfigureRelationships(ModelBuilder modelBuilder)
@@ -84,6 +86,15 @@ public class BunkerDbContext(DbContextOptions<BunkerDbContext> options) : DbCont
                 .HasForeignKey(e => e.PortCallId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
+    }
+
+    private void SeedData(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Vessel>(e => e.HasData(VesselDataInitializer.Data));
+        modelBuilder.Entity<Port>(e => e.HasData(PortDataInitializer.Data));
+        modelBuilder.Entity<Voyage>(e => e.HasData(VoyageDataInitializer.Data));
+        modelBuilder.Entity<PortCall>(e => e.HasData(PortCallDataInitializer.Data));
+        modelBuilder.Entity<BunkerOrder>(e => e.HasData(BunkerOrderDataInitializer.Data));
     }
 }
 

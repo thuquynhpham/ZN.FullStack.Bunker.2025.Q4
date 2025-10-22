@@ -1,14 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Bunker.Domain.Models;
 
-namespace Bunker.Domain.Models;
+namespace Bunker.Api.Handlers.Port.DTOs;
 
-[Table("Ports")]
-public class Port
+public class CreatePortDto
 {
-    [Key]
-    public int Id { get; set; }
-
     [Required]
     [StringLength(5)]
     public string UNLOCODE { get; set; } = string.Empty;
@@ -31,10 +27,8 @@ public class Port
     [StringLength(50)]
     public string? State { get; set; }
 
-    [Column("Latitude")]
     public decimal? Latitude { get; set; }
 
-    [Column("Longitude")]
     public decimal? Longitude { get; set; }
 
     [StringLength(50)]
@@ -102,23 +96,8 @@ public class Port
 
     public int? AnnualVesselCalls { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
     [StringLength(50)]
     public string? CreatedBy { get; set; }
 
-    [StringLength(50)]
-    public string? UpdatedBy { get; set; }
-
     public string? Notes { get; set; }
-
-    public virtual ICollection<PortCall> PortCalls { get; set; } = new List<PortCall>();
-
-    public virtual ICollection<Voyage> DepartureVoyages { get; set; } = new List<Voyage>();
-    public virtual ICollection<Voyage> ArrivalVoyages { get; set; } = new List<Voyage>();
-
-    public virtual ICollection<BunkerOrder> BunkerOrders { get; set; } = new List<BunkerOrder>();
-
 }

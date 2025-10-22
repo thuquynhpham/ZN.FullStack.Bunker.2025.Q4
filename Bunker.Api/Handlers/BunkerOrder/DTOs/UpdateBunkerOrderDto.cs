@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Bunker.Domain.Models;
 
-namespace Bunker.Domain.Models;
+namespace Bunker.Api.Handlers.BunkerOrder.DTOs;
 
-[Table("BunkerOrders")]
-public class BunkerOrder
+public class UpdateBunkerOrderDto
 {
-    [Key]
+    [Required]
     public int Id { get; set; }
 
     [Required]
@@ -203,24 +202,8 @@ public class BunkerOrder
 
     public string? SustainabilityCertificate { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    [StringLength(50)]
-    public string? CreatedBy { get; set; }
-
     [StringLength(50)]
     public string? UpdatedBy { get; set; }
 
     public string? Notes { get; set; }
-
-    public virtual Vessel Vessel { get; set; } = null!;
-
-    public virtual Port Port { get; set; } = null!;
-
-    public virtual Voyage? Voyage { get; set; }
-
-    public virtual PortCall? PortCall { get; set; }
-
 }
