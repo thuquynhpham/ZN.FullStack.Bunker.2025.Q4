@@ -1,3 +1,4 @@
+using Bunker.Domain.DBI;
 using Bunker.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +8,6 @@ public interface IPortCallRepository : IRepository<PortCall>
 {
 }
 
-public class PortCallRepository : Repository<PortCall>, IPortCallRepository
+public class PortCallRepository(BunkerDbContext context) : Repository<PortCall>(context), IPortCallRepository
 {
-    public PortCallRepository(DbContext context) : base(context)
-    {
-    }
 }

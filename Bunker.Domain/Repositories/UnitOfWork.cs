@@ -17,7 +17,7 @@ public interface IUnitOfWork : IDisposable
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly DbContext _context;
+    private readonly BunkerDbContext _context;
     private bool _disposed = false;
 
     public UnitOfWork(BunkerDbContext context)

@@ -1,3 +1,4 @@
+using Bunker.Domain.DBI;
 using Bunker.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +8,6 @@ public interface IVesselRepository : IRepository<Vessel>
 {
 }
 
-public class VesselRepository : Repository<Vessel>, IVesselRepository
+public class VesselRepository(BunkerDbContext context) : Repository<Vessel>(context), IVesselRepository
 {
-    public VesselRepository(DbContext context) : base(context)
-    {
-    }
 }

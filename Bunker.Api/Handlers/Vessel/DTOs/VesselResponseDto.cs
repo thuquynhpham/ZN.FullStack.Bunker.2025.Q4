@@ -1,6 +1,8 @@
+using Bunker.Api.Handlers._Shared;
+
 namespace Bunker.Api.Handlers.Vessel.DTOs;
 
-public class VesselResponseDto
+public class VesselResponseDto : QueryApiResponse<VesselResponseDto>
 {
     public int Id { get; set; }
     public string IMO { get; set; } = string.Empty;
@@ -25,4 +27,38 @@ public class VesselResponseDto
     public string? CreatedBy { get; set; }
     public string? UpdatedBy { get; set; }
     public string? Notes { get; set; }
+
+    public static VesselResponseDto Create(Bunker.Domain.Models.Vessel vessel)
+    {
+        if (vessel is null) throw new ArgumentNullException(nameof(vessel));
+
+        return new VesselResponseDto
+        {
+            Id = vessel.Id,
+            IMO = vessel.IMO,
+            Name = vessel.Name,
+            VesselType = vessel.VesselType,
+            Flag = vessel.Flag,
+            GrossTonnage = vessel.GrossTonnage,
+            DeadweightTonnage = vessel.DeadweightTonnage,
+            LengthOverall = vessel.LengthOverall,
+            Beam = vessel.Beam,
+            Draft = vessel.Draft,
+            YearBuilt = vessel.YearBuilt,
+            Owner = vessel.Owner,
+            Status = vessel.Status,
+            MaxCrew = vessel.MaxCrew,
+            EnginePowerKW = vessel.EnginePowerKW,
+            MaxSpeedKnots = vessel.MaxSpeedKnots,
+            // Entity model in provided context does not show a CallSign property.
+            // Set to null here; adjust to `vessel.CallSign` if entity gains that property.
+            CallSign = null,
+            MMSI = vessel.MMSI,
+            CreatedAt = vessel.CreatedAt,
+            UpdatedAt = vessel.UpdatedAt,
+            CreatedBy = vessel.CreatedBy,
+            UpdatedBy = vessel.UpdatedBy,
+            Notes = vessel.Notes
+        };
+    }
 }

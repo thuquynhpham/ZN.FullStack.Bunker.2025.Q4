@@ -95,7 +95,7 @@ public class GetAllPortsHandler : QueryHandlerBase<GetAllPortsQuery, GetAllPorts
     }
 }
 
-public class GetAllPortsQuery : IQuery<GetAllPortsResponse>
+public record GetAllPortsQuery : IQuery<GetAllPortsResponse>
 {
     public string? Country { get; set; }
     public string? PortType { get; set; }

@@ -1,3 +1,4 @@
+using Bunker.Domain.DBI;
 using Bunker.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +8,6 @@ public interface IBunkerOrderRepository : IRepository<BunkerOrder>
 {
 }
 
-public class BunkerOrderRepository : Repository<BunkerOrder>, IBunkerOrderRepository
+public class BunkerOrderRepository(BunkerDbContext context) : Repository<BunkerOrder>(context), IBunkerOrderRepository
 {
-    public BunkerOrderRepository(DbContext context) : base(context)
-    {
-    }
 }

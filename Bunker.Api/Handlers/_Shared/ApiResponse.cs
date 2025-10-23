@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace Bunker.Api.Handlers._Shared
 {
@@ -42,6 +43,7 @@ namespace Bunker.Api.Handlers._Shared
 
     public class QueryApiResponse<T> : ApiResponse<T> where T : ApiResponse<T>, new()
     {
+        public static T Success(T data) { return data; }
     }
 
     public class CommandApiResponse : ApiResponse<CommandApiResponse>
@@ -49,6 +51,7 @@ namespace Bunker.Api.Handlers._Shared
         public int? Id { get; set; }
         public static CommandApiResponse Success() { return new CommandApiResponse(); }
         public static CommandApiResponse Success(int id) { return new CommandApiResponse { Id = id }; }
+        public static CommandApiResponse Success<T>(T data) { return new CommandApiResponse(); }
     }
 
 }

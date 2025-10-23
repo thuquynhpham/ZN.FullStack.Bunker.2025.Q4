@@ -27,9 +27,17 @@ public class Vessel
 
     public decimal? GrossTonnage { get; set; }
 
+    public decimal? NetTonnage { get; set; }
+
+    public decimal? Deadweight { get; set; }
+
     public decimal? DeadweightTonnage { get; set; }
 
+    public decimal? Length { get; set; }
+
     public decimal? LengthOverall { get; set; }
+
+    public decimal? Width { get; set; }
 
     public decimal? Beam { get; set; }
 

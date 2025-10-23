@@ -1,50 +1,45 @@
 using Bunker.Api.Handlers._Shared;
-using Bunker.Api.Handlers.BunkerOrder;
-using Bunker.Api.Handlers.BunkerOrder.DTOs;
+using Bunker.Api.Handlers.PortCall;
+using Bunker.Api.Handlers.PortCall.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bunker.Api.Controllers;
 
-[Route("api/bunker-orders")]
+[Route("api/port-calls")]
 [ApiController]
-public class BunkerOrderController : ApiControllerBase
+public class PortCallController(ILogger<PortCallController> logger, IMediator mediator) : ApiControllerBase(logger, mediator)
 {
-    public BunkerOrderController(ILogger<BunkerOrderController> logger, IMediator mediator)
-        : base(logger, mediator)
-    {
-    }
-
     [HttpPost("create")]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> CreateBunkerOrder(
-        [FromBody] CreateBunkerOrderCommand request,
+    public async Task<IActionResult> CreatePortCall(
+        [FromBody] CreatePortCallCommand request,
         CancellationToken cancellationToken = default)
     {
         return await HandleCommandAsync(request, cancellationToken);
     }
 
     [HttpGet("get-all")]
-    [ProducesResponseType(typeof(GetAllBunkerOrdersResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(QueryApiResponse<GetAllBunkerOrdersResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetAllBunkerOrders(
-        [FromQuery] GetAllBunkerOrdersQuery request,
+    [ProducesResponseType(typeof(GetAllPortCallsResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(QueryApiResponse<GetAllPortCallsResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetAllPortCalls(
+        [FromQuery] GetAllPortCallsQuery request,
         CancellationToken cancellationToken = default)
     {
         return await HandleQueryAsync(request, cancellationToken);
     }
 
     [HttpGet("get-by-id/{id}")]
-    [ProducesResponseType(typeof(GetBunkerOrderByIdResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(QueryApiResponse<GetBunkerOrderByIdResponse>), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(QueryApiResponse<GetBunkerOrderByIdResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetBunkerOrderById(
+    [ProducesResponseType(typeof(GetPortCallByIdResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(QueryApiResponse<GetPortCallByIdResponse>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(QueryApiResponse<GetPortCallByIdResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetPortCallById(
         int id,
         CancellationToken cancellationToken = default)
     {
-        var request = new GetBunkerOrderByIdQuery { Id = id };
+        var request = new GetPortCallByIdQuery { Id = id };
         return await HandleQueryAsync(request, cancellationToken);
     }
 
@@ -53,12 +48,12 @@ public class BunkerOrderController : ApiControllerBase
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateBunkerOrder(
+    public async Task<IActionResult> UpdatePortCall(
         int id,
-        [FromBody] UpdateBunkerOrderCommand request,
+        [FromBody] UpdatePortCallCommand request,
         CancellationToken cancellationToken = default)
     {
-        request.BunkerOrder.Id = id;
+        request.PortCall.Id = id;
         return await HandleCommandAsync(request, cancellationToken);
     }
 
@@ -66,11 +61,11 @@ public class BunkerOrderController : ApiControllerBase
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(CommandApiResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> DeleteBunkerOrder(
+    public async Task<IActionResult> DeletePortCall(
         int id,
         CancellationToken cancellationToken = default)
     {
-        var request = new DeleteBunkerOrderCommand { Id = id };
+        var request = new DeletePortCallCommand(id);
         return await HandleCommandAsync(request, cancellationToken);
     }
 }

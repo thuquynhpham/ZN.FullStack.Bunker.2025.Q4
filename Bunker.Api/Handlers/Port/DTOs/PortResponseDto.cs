@@ -1,6 +1,8 @@
+using Bunker.Api.Handlers._Shared;
+
 namespace Bunker.Api.Handlers.Port.DTOs;
 
-public class PortResponseDto
+public class PortResponseDto : QueryApiResponse<PortResponseDto>
 {
     public int Id { get; set; }
     public string UNLOCODE { get; set; } = string.Empty;

@@ -1,6 +1,8 @@
+using Bunker.Api.Handlers._Shared;
+
 namespace Bunker.Api.Handlers.BunkerOrder.DTOs;
 
-public class BunkerOrderResponseDto
+public class BunkerOrderResponseDto : QueryApiResponse<BunkerOrderResponseDto>
 {
     public int Id { get; set; }
     public int VesselId { get; set; }

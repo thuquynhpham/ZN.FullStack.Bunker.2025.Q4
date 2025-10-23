@@ -1,6 +1,8 @@
+using Bunker.Api.Handlers._Shared;
+
 namespace Bunker.Api.Handlers.Voyage.DTOs;
 
-public class VoyageResponseDto
+public class VoyageResponseDto : QueryApiResponse<VoyageResponseDto>
 {
     public int Id { get; set; }
     public string VoyageNumber { get; set; } = string.Empty;
@@ -66,4 +68,73 @@ public class VoyageResponseDto
     public string? VesselName { get; set; }
     public string? DeparturePortName { get; set; }
     public string? ArrivalPortName { get; set; }
+
+    public static VoyageResponseDto Create(Bunker.Domain.Models.Voyage voyage)
+    {
+        return new VoyageResponseDto
+        {
+            Id = voyage.Id,
+            VoyageNumber = voyage.VoyageNumber,
+            VesselId = voyage.VesselId,
+            Status = voyage.Status,
+            DeparturePortId = voyage.DeparturePortId,
+            ArrivalPortId = voyage.ArrivalPortId,
+            ScheduledDeparture = voyage.ScheduledDeparture,
+            ActualDeparture = voyage.ActualDeparture,
+            ScheduledArrival = voyage.ScheduledArrival,
+            ActualArrival = voyage.ActualArrival,
+            DistanceNauticalMiles = voyage.DistanceNauticalMiles,
+            EstimatedDurationHours = voyage.EstimatedDurationHours,
+            ActualDurationHours = voyage.ActualDurationHours,
+            AverageSpeedKnots = voyage.AverageSpeedKnots,
+            MaxSpeedKnots = voyage.MaxSpeedKnots,
+            FuelConsumptionMT = voyage.FuelConsumptionMT,
+            FuelCostUSD = voyage.FuelCostUSD,
+            TotalCostUSD = voyage.TotalCostUSD,
+            RevenueUSD = voyage.RevenueUSD,
+            ProfitLossUSD = voyage.ProfitLossUSD,
+            CargoType = voyage.CargoType,
+            CargoWeightMT = voyage.CargoWeightMT,
+            CargoVolumeM3 = voyage.CargoVolumeM3,
+            TEUCount = voyage.TEUCount,
+            PassengerCount = voyage.PassengerCount,
+            Charterer = voyage.Charterer,
+            CargoOwner = voyage.CargoOwner,
+            CharterType = voyage.CharterType,
+            CharterRateUSDPerDay = voyage.CharterRateUSDPerDay,
+            CharterDurationDays = voyage.CharterDurationDays,
+            WeatherConditions = voyage.WeatherConditions,
+            SeaState = voyage.SeaState,
+            WindSpeedKnots = voyage.WindSpeedKnots,
+            WaveHeightMeters = voyage.WaveHeightMeters,
+            VisibilityNauticalMiles = voyage.VisibilityNauticalMiles,
+            HasIncidents = voyage.HasIncidents,
+            IncidentDescription = voyage.IncidentDescription,
+            IncidentSeverity = voyage.IncidentSeverity,
+            IncidentDate = voyage.IncidentDate,
+            HasDelays = voyage.HasDelays,
+            DelayReason = voyage.DelayReason,
+            DelayDurationHours = voyage.DelayDurationHours,
+            DelayCostUSD = voyage.DelayCostUSD,
+            PortCallCount = voyage.PortCallCount,
+            BunkerOrderCount = voyage.BunkerOrderCount,
+            TotalBunkerQuantityMT = voyage.TotalBunkerQuantityMT,
+            TotalBunkerCostUSD = voyage.TotalBunkerCostUSD,
+            CaptainName = voyage.CaptainName,
+            ChiefEngineerName = voyage.ChiefEngineerName,
+            CrewCount = voyage.CrewCount,
+            IsInternational = voyage.IsInternational,
+            CrossesEquator = voyage.CrossesEquator,
+            CrossesDateLine = voyage.CrossesDateLine,
+            TimeZoneChanges = voyage.TimeZoneChanges,
+            CreatedAt = voyage.CreatedAt,
+            UpdatedAt = voyage.UpdatedAt,
+            CreatedBy = voyage.CreatedBy,
+            UpdatedBy = voyage.UpdatedBy,
+            Notes = voyage.Notes,
+            VesselName = voyage.Vessel?.Name,
+            DeparturePortName = voyage.DeparturePort?.Name,
+            ArrivalPortName = voyage.ArrivalPort?.Name
+        };
+    }
 }
