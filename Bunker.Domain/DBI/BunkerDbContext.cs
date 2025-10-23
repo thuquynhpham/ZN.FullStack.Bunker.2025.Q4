@@ -1,6 +1,7 @@
 using Bunker.Domain.Models;
 using Bunker.Domain.DBI.SeedData;
 using Microsoft.EntityFrameworkCore;
+using TestSupport.EfHelpers;
 
 namespace Bunker.Domain.DBI;
 
@@ -86,6 +87,11 @@ public class BunkerDbContext(DbContextOptions<BunkerDbContext> options) : DbCont
                 .HasForeignKey(e => e.PortCallId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
+    }
+
+    public void EnsureClean()
+    {
+        Database.EnsureClean();
     }
 
     private void SeedData(ModelBuilder modelBuilder)
