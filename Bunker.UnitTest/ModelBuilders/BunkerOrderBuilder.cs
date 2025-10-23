@@ -1,0 +1,116 @@
+using Bunker.Domain.Models;
+
+namespace Bunker.UnitTest.ModelBuilders
+{
+    public class BunkerOrderBuilder
+    {
+        private BunkerOrder _bunkerOrder;
+
+        public BunkerOrderBuilder(int id, int vesselId, int portId, string orderNumber, string fuelType, decimal quantityMT)
+        {
+            _bunkerOrder = new BunkerOrder
+            {
+                Id = id,
+                VesselId = vesselId,
+                PortId = portId,
+                VoyageId = 1,
+                PortCallId = 1,
+                OrderNumber = orderNumber,
+                Status = "Approved",
+                FuelType = fuelType,
+                QuantityMT = quantityMT,
+                UnitPriceUSDPerMT = 650.0m,
+                TotalPriceUSD = quantityMT * 650.0m,
+                Currency = "USD",
+                ExchangeRate = 1.0m,
+                LocalPrice = null,
+                LocalCurrency = null,
+                SupplierName = "Shell Marine",
+                SupplierContactPerson = "John Marine",
+                SupplierPhone = "+1-555-0123",
+                SupplierEmail = "marine@shell.com",
+                SupplierAddress = "123 Marine Way, Houston, TX 77001",
+                SupplierLicenseNumber = "SM-2024-001",
+                RequestedDate = DateTime.UtcNow.AddDays(-3),
+                ApprovedDate = DateTime.UtcNow.AddDays(-2),
+                ScheduledDeliveryDate = DateTime.UtcNow.AddDays(1),
+                ActualDeliveryDate = null,
+                DeliveryStartTime = null,
+                DeliveryEndTime = null,
+                DeliveryDurationHours = null,
+                DeliveryMethod = "Barge",
+                BargeName = "Shell Barge 101",
+                BargeCapacityMT = 2000.0m,
+                BargeIMO = "9876543",
+                TruckCount = null,
+                TruckLicensePlates = null,
+                PipelineDelivery = false,
+                PipelineLengthMeters = null,
+                DeliveryLocation = "Berth 5",
+                BerthNumber = "Berth 5",
+                TerminalName = "Container Terminal A",
+                AnchorageArea = null,
+                QualitySpecifications = "ISO 8217:2017",
+                DensityAt15C = 0.850m,
+                ViscosityAt50C = 2.5m,
+                SulfurContentPercent = 0.1m,
+                FlashPointCelsius = 60.0m,
+                PourPointCelsius = -15.0m,
+                WaterContentPercent = 0.05m,
+                SedimentContentPercent = 0.01m,
+                AshContentPercent = 0.01m,
+                CarbonResiduePercent = 0.1m,
+                VanadiumContentPPM = 10.0m,
+                AluminumContentPPM = 5.0m,
+                SiliconContentPPM = 15.0m,
+                CertificateNumber = "CERT-2024-001",
+                CertificateDate = DateTime.UtcNow.AddDays(-1),
+                CertificateIssuedBy = "Shell Marine",
+                CertificateValidUntil = DateTime.UtcNow.AddDays(30),
+                SampleTaken = true,
+                SampleDate = DateTime.UtcNow.AddDays(-1),
+                SampleLocation = "Barge Tank",
+                SampleSealedBy = "Port Inspector",
+                SampleReceivedBy = "Vessel Chief Engineer",
+                SampleStorageLocation = "Vessel Sample Locker",
+                PaymentTerms = "30 Days",
+                PaymentMethod = "Bank Transfer",
+                PaymentDueDate = DateTime.UtcNow.AddDays(30),
+                PaymentStatus = "Pending",
+                PaymentDate = null,
+                InvoiceNumber = "INV-2024-001",
+                InvoiceDate = DateTime.UtcNow.AddDays(-1),
+                InvoiceAmountUSD = quantityMT * 650.0m,
+                TaxAmountUSD = 0.0m,
+                DiscountAmountUSD = 0.0m,
+                FinalAmountUSD = quantityMT * 650.0m,
+                DeliveryConfirmation = false,
+                QualityAcceptance = false,
+                QualityIssues = null,
+                DisputeStatus = null,
+                DisputeDescription = null,
+                DisputeResolution = null,
+                DisputeResolutionDate = null,
+                RefundAmountUSD = null,
+                RefundDate = null,
+                EnvironmentalCompliance = "IMO 2020 Compliant",
+                IMO2020Compliant = true,
+                LowSulfurFuel = true,
+                BioFuelBlend = false,
+                BioFuelPercentage = null,
+                CarbonFootprintMTCO2 = quantityMT * 3.15m,
+                SustainabilityCertificate = "ISO 14001",
+                CreatedAt = DateTime.UtcNow.AddDays(-5),
+                UpdatedAt = DateTime.UtcNow.AddDays(-1),
+                CreatedBy = "Vessel Chief Engineer",
+                UpdatedBy = "Port Operations",
+                Notes = "Standard marine gas oil for container vessel operations"
+            };
+        }
+
+        public BunkerOrder Build()
+        {
+            return _bunkerOrder;
+        }
+    }
+}

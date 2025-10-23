@@ -13,14 +13,14 @@ public class GetAllPortsHandler : QueryHandlerBase<GetAllPortsQuery, GetAllPorts
     public GetAllPortsHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _portRepository = _unitOfWork.Ports;
+        _portRepository = unitOfWork.Ports;
     }
 
     public override async Task<GetAllPortsResponse> Handle(GetAllPortsQuery request, CancellationToken ct)
     {
         try
         {
-            var query = _portRepository.GetAll().AsQueryable();
+            var query = _portRepository.GetAll();
 
             // Apply filters
             if (!string.IsNullOrEmpty(request.Country))

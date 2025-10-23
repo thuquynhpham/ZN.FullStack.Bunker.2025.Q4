@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunker.Api", "Bunker.Api\Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunker.Domain", "Bunker.Domain\Bunker.Domain.csproj", "{8BD62661-24AA-4D70-BA7E-67105113E9A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunker.UnitTest", "Bunker.UnitTest\Bunker.UnitTest.csproj", "{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{8BD62661-24AA-4D70-BA7E-67105113E9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BD62661-24AA-4D70-BA7E-67105113E9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BD62661-24AA-4D70-BA7E-67105113E9A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A97EBAF-0E5E-404E-B5D3-854E29C7AD13} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11314D1A-8C59-408D-857B-A4F2F4C4A75A}
