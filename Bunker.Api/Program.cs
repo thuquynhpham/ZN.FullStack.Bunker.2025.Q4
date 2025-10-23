@@ -1,10 +1,7 @@
 using Bunker.Domain.DBI;
 using Bunker.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
-using System.Reflection;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +12,23 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Bunker API",
+        Version = "v1",
+        Description = "API for managing vessels, ports, voyages, port calls, and bunker orders"
+    });
+
+    // Include XML comments if available
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        c.IncludeXmlComments(xmlPath);
+    }
+});
 
 var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
@@ -32,8 +45,9 @@ builder.Services.AddDbContext<BunkerDbContext>(options =>
 // Add MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-// Add UnitOfWork
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// Add UnitOfWork with explicit DbContext dependency
+builder.Services.AddScoped<IUnitOfWork>(provider =>
+    new UnitOfWork(provider.GetRequiredService<BunkerDbContext>()));
 
 // Add TimeProvider for consistent timestamps
 builder.Services.AddSingleton(TimeProvider.System);
@@ -43,12 +57,49 @@ builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Ensure database is created and migrations are applied
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var context = scope.ServiceProvider.GetRequiredService<BunkerDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        logger.LogInformation("Checking database connection...");
+
+        // Get pending migrations
+        var pendingMigrations = context.Database.GetPendingMigrations().ToList();
+
+        if (pendingMigrations.Any())
+        {
+            logger.LogInformation("Found {Count} pending migrations: {Migrations}", 
+                pendingMigrations.Count, string.Join(", ", pendingMigrations));
+            
+            logger.LogInformation("Applying migrations...");
+            context.Database.Migrate();
+            
+            logger.LogInformation("Database migrations completed successfully.");
+        }
+        else
+        {
+            logger.LogInformation("Database is up to date. No migrations needed.");
+        }
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred while migrating the database.");
+        throw;
+    }
 }
+
+// Configure the HTTP request pipeline.
+// Enable Swagger in all environments for testing
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bunker API v1");
+    c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
+});
 
 app.UseHttpsRedirection();
 

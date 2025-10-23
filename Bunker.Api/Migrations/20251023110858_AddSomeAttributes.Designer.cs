@@ -4,6 +4,7 @@ using Bunker.Domain.DBI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bunker.Api.Migrations
 {
     [DbContext(typeof(BunkerDbContext))]
-    partial class BunkerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251023110858_AddSomeAttributes")]
+    partial class AddSomeAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,27 +8,21 @@ namespace Bunker.Api.Handlers.BunkerOrder;
 public class GetAllBunkerOrdersHandler : QueryHandlerBase<GetAllBunkerOrdersQuery, GetAllBunkerOrdersResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IBunkerOrderRepository _bunkerOrderRepository;
 
     public GetAllBunkerOrdersHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _bunkerOrderRepository = _unitOfWork.BunkerOrders;
     }
 
     public override async Task<GetAllBunkerOrdersResponse> Handle(GetAllBunkerOrdersQuery request, CancellationToken ct)
     {
         try
         {
-            var bunkerOrders = await _bunkerOrderRepository.GetAllAsync(
-                query => query
-                    .Include(bo => bo.Vessel)
-                    .Include(bo => bo.Port)
-                    .Include(bo => bo.Voyage)
-                    .Include(bo => bo.PortCall),
-                ct);
-
-            var query = bunkerOrders.AsQueryable();
+            IQueryable<Bunker.Domain.Models.BunkerOrder> query = _unitOfWork.BunkerOrders.GetAll()
+                .Include(bo => bo.Vessel)
+                .Include(bo => bo.Port)
+                .Include(bo => bo.Voyage)
+                .Include(bo => bo.PortCall);
 
             // Apply filters
             if (request.VesselId.HasValue)

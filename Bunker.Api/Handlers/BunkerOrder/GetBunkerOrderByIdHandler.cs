@@ -8,27 +8,22 @@ namespace Bunker.Api.Handlers.BunkerOrder;
 public class GetBunkerOrderByIdHandler : QueryHandlerBase<GetBunkerOrderByIdQuery, GetBunkerOrderByIdResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IBunkerOrderRepository _bunkerOrderRepository;
 
     public GetBunkerOrderByIdHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _bunkerOrderRepository = _unitOfWork.BunkerOrders;
     }
 
     public override async Task<GetBunkerOrderByIdResponse> Handle(GetBunkerOrderByIdQuery request, CancellationToken ct)
     {
         try
         {
-            var bunkerOrders = await _bunkerOrderRepository.GetAllAsync(
-                query => query
-                    .Include(bo => bo.Vessel)
-                    .Include(bo => bo.Port)
-                    .Include(bo => bo.Voyage)
-                    .Include(bo => bo.PortCall),
-                ct);
-
-            var bunkerOrder = bunkerOrders.FirstOrDefault(bo => bo.Id == request.Id);
+            var bunkerOrder = await _unitOfWork.BunkerOrders.GetAll()
+                .Include(bo => bo.Vessel)
+                .Include(bo => bo.Port)
+                .Include(bo => bo.Voyage)
+                .Include(bo => bo.PortCall)
+                .FirstOrDefaultAsync(bo => bo.Id == request.Id, ct);
 
             if (bunkerOrder == null)
             {
